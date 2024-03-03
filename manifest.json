@@ -1,11 +1,11 @@
 {
-    "name": "codeElement",
-    "short_name": "codeElement",
-    "description": "Premium Web Templates",
+    "name": "DylanPSX",
+    "short_name": "DylanPSX",
+    "description": "Web App - Portfolio",
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#5CE1E6",
+    "background_color": "#FFFFFF",
+    "theme_color": "#CDFFD8",
     "icons": [
       {
         "src": "icon/path.png",
