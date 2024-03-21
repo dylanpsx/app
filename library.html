@@ -1,13 +1,39 @@
 <!DOCTYPE html>
+<!-- language settings  -->
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- page title  -->
     <title>Application</title>
     <link rel="icon" href="fav.ico" type="image/x-icon" />
-    <link rel="manifest" href="/codElement/manifest.json" />
+    <!-- web application settings  -->
+    <link rel="manifest" href="/app/manifest.json" />
+    <!-- css style for this page component  -->
     <style>
-      /* Styles de base */
+      /* ------- animation of components on page load */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* ------- routing for the switch theme */
+      :root {
+        --text-color-light: #000;
+        --header-background-color-light: #f4f4f4;
+        --section-background-color-light: #fff;
+
+        --background-color-dark: #121212;
+        --text-color-dark: #c7c7c7;
+        --header-background-color-dark: #1c1c1c;
+        --section-background-color-dark: #2c2c2c;
+      }
+      /* ------- general body styles */
       html,
       body {
         margin: 0;
@@ -15,75 +41,141 @@
         width: 100%;
         height: 100%;
         font-family: "Arial", sans-serif;
-        background-color: #000; /* Fond noir */
-        color: white;
+        background: var(--background-color);
+        color: var(--text-color);
+        background: var(--background-color-light);
+        color: var(--text-color-light);
+        transition: background-color 0.3s linear, color 0.3s linear;
+        animation: fadeIn 1s ease-out forwards;
+      }
+      /* ------- switch theme */
+      body.dark-mode {
+        background: var(--background-color-dark);
+        color: var(--text-color-dark);
+        --background-color: var(--background-color-dark);
+        --text-color: var(--text-color-dark);
+        --header-background-color: var(--header-background-color-dark);
+        --section-background-color: var(--section-background-color-dark);
+      }
+      .theme-switch-wrapper {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        align-items: center;
       }
 
-      /* Conteneur pour les librarys */
+      .theme-switch {
+        display: inline-block;
+        height: 34px;
+        position: relative;
+        width: 60px;
+      }
+
+      .theme-switch input {
+        display: none;
+      }
+
+      .slider {
+        background-color: #ccc;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: 0.4s;
+        width: 26px;
+      }
+
+      input:checked + .slider {
+        background-color: #66bb6a;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      /* ------- product library */
       #library-container {
         display: grid;
         grid-template-columns: repeat(
           auto-fill,
           minmax(300px, 1fr)
-        ); /* Augmente la taille min des colonnes pour de plus grandes images */
-        gap: 30px; /* Augmente l'espacement pour une meilleure lisibilité */
-        padding: 50px 10px; /* Ajoute un padding pour éliminer l'espace contre les bords de la page */
+        ); /* increase minimum column size for larger images */
+        gap: 30px; /* increase spacing for better readability */
+        padding: 50px 10px; /* Adds padding to eliminate space against the edges of the page */
         max-width: 100%;
         box-sizing: border-box;
       }
 
-      /* Style des cartes */
+      /* card */
       .library-template {
-        border-radius: 15px; /* Bordures plus arrondies pour un look moderne */
+        border-radius: 15px; /* rounded edges */
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-        background-color: #424242; /* Fond des cartes plus foncé pour un contraste */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Ombre plus profonde pour un effet 3D */
+        background-color: #1c1c1e; /* darker card background for contrast */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* deeper shadow for a 3D effect */
       }
 
       .library-template:hover {
         transform: scale(
           1.03
-        ); /* Légère augmentation de l'échelle pour un effet de survol dynamique */
+        ); /* slight increase in scale for a dynamic hover effect */
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
       }
 
-      /* Style des images */
-      .library-template img {
+      /* images and videos */
+      .library-template img,
+      .library-template video {
         width: 100%;
-        height: 200px; /* Hauteur fixe pour que les images soient plus grandes et uniformes */
-        object-fit: cover; /* Assure que l'image couvre la zone sans perdre ses proportions */
+        height: 200px; /* fixed height to make media larger and more uniform */
+        object-fit: cover; /* ensures the media covers the area without losing its proportions */
         transition: transform 0.3s ease;
       }
 
-      .library-template:hover img {
-        transform: scale(1.1); /* Zoom subtil sur l'image */
+      .library-template:hover img,
+      .library-template:hover video {
+        transform: scale(1.1); /* focus on the media */
       }
 
-      /* Style du titre */
-      .library-template .title {
-        background-color: rgba(0, 0, 0, 0.8); /* Légère transparence */
-        color: #fff;
-        padding: 15px;
-        text-align: center;
-        font-size: 20px; /* Taille de police plus grande pour l'accessibilité */
-        font-weight: bold; /* Gras pour le titre */
+      /* ensures that the video controls do not extend beyond the video element */
+      .library-template video {
+        display: block; /* eliminate any space below the video */
+        width: 100%; /* ensures that the video does not extend beyond its container */
       }
 
-      /* Style du lien */
+      /* download link */
       .library-template a {
         display: block;
         width: 100%;
-        padding: 15px 0; /* Ajustez le padding vertical selon vos préférences */
-        background-color: transparent; /* Fond transparent pour le lien */
-        color: #94b9ff; /* Vert bleu clair pour le texte du lien */
+        padding: 15px 0; /* adjust the vertical padding to your preference */
+        background-color: transparent; /* transparent background for the link */
+        color: #94b9ff; /* color for link text */
         text-align: center;
-        text-decoration: none; /* Supprime le soulignement par défaut */
+        text-decoration: none; /* remove default underline */
         font-weight: bold;
         transition: color 0.3s ease, background-color 0.3s ease;
 
-        /* Animation de soulignement */
+        /* underline animation */
         position: relative;
       }
 
@@ -91,35 +183,40 @@
         content: "";
         position: absolute;
         width: 0;
-        height: 2px; /* Épaisseur du soulignement */
-        bottom: 5px; /* Ajustez selon l'espacement désiré du texte au soulignement */
+        height: 2px; /* underline thickness */
+        bottom: 5px; /* adjusts to desired text spacing at underline */
         left: 50%;
-        background-color: #94b9ff; /* Couleur initiale du soulignement */
+        background-color: #94b9ff; /* initial underline color */
         transition: width 0.3s ease, background-color 0.3s ease, left 0.3s ease;
       }
 
       .library-template a:hover::after {
-        width: 100%; /* Le soulignement s'étend sur toute la largeur au survol */
-        left: 0; /* Alignement correct du soulignement */
-        background-color: #cdffd8; /* Couleur rose au survol */
+        width: 100%; /* underline extends to full width on hover */
+        left: 0; /* correct underline alignment */
+        background-color: #cdffd8; /* pink color on hover */
       }
 
       .library-template a:hover {
-        color: #cdffd8; /* Change la couleur du texte en rose au survol */
+        color: #cdffd8; /* change text color on hover */
       }
-      /* Style pour les boutons de filtre */
+
+      /* ------- product library */
+      #filter-select {
+        display: none;
+      }
       .filter-select {
         display: inline-block;
         padding: 10px 20px;
         background-color: transparent;
-        color: #94b9ff; /* Vert bleu clair */
+        color: var(--text-color);
         text-align: center;
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease;
-        border: 2px solid transparent; /* Prépare le bouton pour un effet de bordure */
-        cursor: pointer; /* Change le curseur pour indiquer la possibilité de cliquer */
-        margin: 20px auto; /* Centrer le select dans la div */
+        border: 1.5px solid #1c1c1e; /* prepare the button for a border effect */
+        border-radius: 0.5rem;
+        cursor: pointer; /* changes the cursor to indicate clickability */
+        margin: 20px auto; /* center the select in the div */
         position: relative;
       }
 
@@ -128,7 +225,7 @@
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: -2px; /* Ajustez si nécessaire pour positionner le soulignement */
+        bottom: -2px; /* adjust if necessary to position the underline */
         left: 50%;
         background-color: #94b9ff;
         transition: width 0.3s ease, left 0.3s ease, background-color 0.3s ease;
@@ -137,77 +234,107 @@
       .filter-select:hover::after {
         width: 100%;
         left: 0;
-        background-color: #cdffd8; /* Rose au survol */
+        background-color: #cdffd8; /* color change on hover */
       }
 
       .filter-select:hover {
         color: #cdffd8;
       }
-          /* Ajoutez ici le style pour la modale */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.9);
-    }
-
-    .modal-content {
-      margin: auto;
-      display: block;
-      width: 80%;
-      max-width: 700px;
-    }
-
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 35px;
-      color: #f1f1f1;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
     </style>
   </head>
-  <body>
+  <!-- html page component contents  -->
+  <body class="light-mode">
+    <!-- toggle switch for switch theme  -->
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round"></div>
+      </label>
+    </div>
+    <!-- product filter  -->
     <div id="filter-select">
       <select
         class="filter-select"
         onchange="filterCategory('Page Structures', this.value)"
       >
-        <option value="All">Ajouter une catégorie</option>
-        <option value="Footers">Ajouter une sous-catégorie</option>
+        <option value="All">All Page Structures</option>
+        <option value="Footers">Footers</option>
+        <option value="Login Pages">Login Pages</option>
+        <option value="Navigation Menus">Navigation Menus</option>
+        <option value="Sidebars">Sidebars</option>
+        <option value="Signup Pages">Signup Pages</option>
       </select>
       <select
         class="filter-select"
         onchange="filterCategory('Page Elements', this.value)"
       >
-        <option value="All">Ajouter une catégorie</option>
-        <option value="Dropzones">Ajouter une sous-catégorie</option>
+        <option value="All">All Page Elements</option>
+        <option value="Dropzones">Dropzones</option>
+        <option value="Cards">Cards</option>
+        <option value="Accordion">Accordion</option>
+        <option value="Buttons">Buttons</option>
+        <option value="Charts">Charts</option>
+        <option value="Drag and Drop">Drag and Drop</option>
+        <option value="Dropdown Menu">Dropdown Menu</option>
+        <option value="Image Galleries">Image Galleries</option>
+        <option value="Pricing">Pricing</option>
+        <option value="Scroll Snap">Scroll Snap</option>
+        <option value="Profile Cards">Profile Cards</option>
+        <option value="Scrolling">Scrolling</option>
+        <option value="Socials">Socials</option>
+        <option value="Tabs">Tabs</option>
+        <option value="Vertical Tabs">Vertical Tabs</option>
+        <option value="Modals">Modals</option>
+        <option value="Tables">Tables</option>
       </select>
       <select
         class="filter-select"
         onchange="filterCategory('More Items', this.value)"
       >
-        <option value="All">Ajouter une catégorie</option>
-        <option value="Widgets">Ajouter une sous-catégorie</option>
+        <option value="All">All More Items</option>
+        <option value="Widgets">Widgets</option>
+        <option value="Parallax">Parallax</option>
+        <option value="Gifts Animation">Gifts Animation</option>
+        <option value="Form Controls">Form Controls</option>
+        <option value="Animation">Animation</option>
+        <option value="Card Payment">Card Payment</option>
+        <option value="Toast Notification">Toast Notification</option>
       </select>
     </div>
+    <!-- product library  -->
     <div id="library-container"></div>
-    <!-- La modale pour l'image agrandie -->
-    <div id="myModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="img01" />
-    </div>
+    <!-- cdn script for switch theme  -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <!-- javascript script for this page component  -->
     <script>
+      // ------- switch theme
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleSwitch = document.querySelector(
+          '.theme-switch input[type="checkbox"]'
+        );
+        const currentTheme = localStorage.getItem("theme")
+          ? localStorage.getItem("theme")
+          : null;
+
+        if (currentTheme) {
+          document.body.className = currentTheme;
+          toggleSwitch.checked = currentTheme === "dark-mode";
+        }
+
+        toggleSwitch.addEventListener("change", switchTheme, false);
+
+        function switchTheme(e) {
+          if (e.target.checked) {
+            document.body.className = "dark-mode";
+            localStorage.setItem("theme", "dark-mode");
+          } else {
+            document.body.className = "light-mode";
+            localStorage.setItem("theme", "light-mode");
+          }
+        }
+      });
+
+      // ------- load product data
       let allData = []; // Définition de allData au niveau global
 
       function loadData() {
@@ -222,6 +349,7 @@
           );
       }
 
+      // ------- product filter
       function filterCategory(category, subCategory = "") {
         const container = document.getElementById("library-container");
         container.innerHTML = ""; // Vide le conteneur
@@ -239,38 +367,29 @@
           }
         }
 
+        // ------- product library
         filteredData.forEach((library) => {
           const libraryElement = document.createElement("div");
           libraryElement.className = "library-template";
+
+          let mediaContent;
+          if (library.mediaType === "image") {
+            mediaContent = `<img src="${library.image}" alt="${library.title}" onclick="window.open('${library.demo}', '_blank');">`;
+          } else if (library.mediaType === "video") {
+            mediaContent = `<video autoplay muted loop onclick="window.open('${library.demo}', '_blank');">
+                      <source src="${library.image}" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>`;
+          }
+
           libraryElement.innerHTML = `
-            <img src="${library.image}" alt="${library.title}" onclick="openModal('${library.image}')">
-            <div class="title">${library.title}</div>
-            <a href="${library.url}" target="_blank">Ouvrir</a>
-          `;
+    ${mediaContent}
+    <a href="${library.url}" target="_blank">View Code</a>
+  `;
           container.appendChild(libraryElement);
         });
       }
-      function openModal(imageUrl) {
-        // Logique pour la modale
-        document.addEventListener(
-          "click",
-          function (event) {
-            if (event.target.matches(".library-template img")) {
-              var modal = document.getElementById("myModal");
-              var modalImg = document.getElementById("img01");
-              modal.style.display = "block";
-              modalImg.src = event.target.src;
-            }
 
-            if (event.target.matches(".close")) {
-              var modal = document.getElementById("myModal");
-              modal.style.display = "none";
-            }
-          },
-          false
-        );
-        console.log("Ouverture de l'image en grand : " + imageUrl);
-      }
       // Assurez-vous d'appeler loadData() pour initialiser allData et afficher les éléments
       window.onload = loadData; // Exécute loadData lorsque la page est chargée
     </script>
