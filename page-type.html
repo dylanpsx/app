@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- language settings  -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- page title  -->
+    <title>Application</title>
+    <link rel="icon" href="fav.ico" type="image/x-icon" />
+    <!-- web application settings  -->
+    <link rel="manifest" href="manifest.json" />
+    <!-- css style for this page component  -->
+    <style>
+      .component {
+        background-color: #ffffff;
+        color: #333333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px; /* Ajout de marge en bas pour séparer les composants */
+      }
+
+      /* Réglages de base pour la taille de la police */
+      body {
+        font-size: 16px;
+      }
+
+      /* Réglages de la taille de police pour les petits écrans */
+      @media screen and (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+      }
+
+      /* Réglages de la taille de police pour les écrans très petits */
+      @media screen and (max-width: 480px) {
+        body {
+          font-size: 12px;
+        }
+      }
+
+      /* Réduction de la marge supérieure des paragraphes */
+      p {
+        margin-top: -14px;
+        font-size: small;
+      }
+
+      /* Styles pour les liens */
+      a {
+        color: gray;
+        text-decoration: underline;
+      }
+
+      /* Styles pour les liens dans les paragraphes */
+      p a {
+        color: gray;
+        text-decoration: underline;
+      }
+
+      /* Styles pour les liens dans la section "Links" */
+      .links {
+        margin-top: 20px;
+      }
+
+      .links a {
+        display: inline-block;
+        color: #000000;
+        text-decoration: underline;
+        margin-bottom: 10px;
+        background-color: #cdffd8;
+        padding: 5px; /* Ajout de padding pour espacer légèrement les liens */
+      }
+
+      /* Styles pour les éléments surlignés */
+      .highlight {
+        text-decoration: underline;
+      }
+
+      /* Styles pour les conteneurs de projets */
+      .project-container {
+        display: flex;
+        flex-wrap: wrap; /* Permet aux projets de passer à la ligne sur les petits écrans */
+        margin-bottom: 10px;
+      }
+
+      /* Styles pour les projets */
+      .project {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      /* Styles pour les paragraphes des projets */
+      .project p {
+        margin: 5px 0;
+      }
+
+      /* Style pour le premier paragraphe des projets */
+      .project p:first-child {
+        background-color: #cdffd8;
+      }
+
+      /* Styles pour les boutons */
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: transparent;
+        border: 1px solid #333333;
+        border-radius: 10px;
+      }
+
+      /* Styles pour les boutons centrés */
+      .center {
+        text-align: center;
+      }
+
+      /* Styles pour les liens dans la section centrée */
+      .center a {
+        color: #333333;
+      }
+
+      /* Styles pour les groupes de compétences */
+      .skill-group {
+        display: flex;
+        flex-wrap: wrap; /* Permet aux compétences de passer à la ligne sur les petits écrans */
+        justify-content: space-between;
+      }
+
+      /* Styles pour les compétences */
+      .skill {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      /* Styles pour les paragraphes des compétences */
+      .skill p {
+        margin: 5px 0;
+      }
+
+      /* Styles pour les éléments de compétences */
+      .skill-item {
+        border: 1px solid #000000;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <!-- html page component contents  -->
+  <body>
+    <div class="component">
+      <h2>BTS - Technicien Programmation Information (2023)</h2>
+      <p>short mission & full only</p>
+      <p>✅ available immediately</p>
+      <p><a href="mailto:dylanpsx@gmail.com">dylanpsx@gmail.com</a></p>
+      <div class="links">
+        <a href="URL_PORTFOLIO">Ouvrir mon portfolio</a>
+        <a href="URL_GITHUB">Voir mon travail sur Github</a>
+        <a href="URL_CV">Consultez mon CV</a>
+      </div>
+    </div>
+    <div class="component">
+      <h2 style="color: #94b9ff; font-weight: bold">Projects</h2>
+      <div class="project-container">
+        <div class="project">
+          <p style="background-color: #cdffd8; display: inline-block">
+            FISHEYE (2024)
+          </p>
+          <p>
+            Développement d'une application web utilisant des design patterns en
+            JavaScript pour une plateforme d'artiste lors d'un projet de
+            formation.
+          </p>
+        </div>
+        <div class="project">
+          <p style="background-color: #cdffd8; display: inline-block">
+            KASA (2023)
+          </p>
+          <p>
+            Développement d'une application web avec REACT pour une agence
+            immobilière lors d'un projet final de formation.
+          </p>
+        </div>
+        <div class="project">
+          <p style="background-color: #cdffd8; display: inline-block">
+            KASA (2023)
+          </p>
+          <p>
+            Développement d'une application web avec REACT pour une agence
+            immobilière lors d'un projet final de formation.
+          </p>
+        </div>
+      </div>
+      <div class="center">
+        <a href="URL_PORTFOLIO" class="button"
+          >Démo des projets à retrouver dans mon Portfolio</a
+        >
+      </div>
+    </div>
+    <div class="component">
+      <h2 style="color: #94b9ff; font-weight: bold">Skills</h2>
+
+      <div class="skill-group">
+        <div class="skill">
+          <p style="background-color: #cdffd8; display: inline-block">Design</p>
+          <div class="skill-item">
+            <p>#CANVA</p>
+          </div>
+          <div class="skill-item">
+            <p>#FIGMA</p>
+          </div>
+        </div>
+
+        <div class="skill">
+          <p style="background-color: #cdffd8; display: inline-block">
+            Front/Back
+          </p>
+          <div class="skill-item">
+            <p>#JAVASCRIPT #REACT</p>
+          </div>
+          <div class="skill-item">
+            <p>#CSS #SASS</p>
+          </div>
+          <div class="skill-item">
+            <p>#PHP #BASIC</p>
+          </div>
+        </div>
+
+        <div class="skill">
+          <p style="background-color: #cdffd8; display: inline-block">Other</p>
+          <div class="skill-item">
+            <p>#GOOGLETOOLS</p>
+          </div>
+          <div class="skill-item">
+            <p>#GIT #GITHUB</p>
+          </div>
+          <div class="skill-item">
+            <p>#DEVELOPMENTTOOLS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- javascript script for this page component  -->
+    <script>
+      // type="module"
+    </script>
+  </body>
+</html>
