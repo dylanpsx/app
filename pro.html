@@ -28,13 +28,14 @@
         --background-color-light: #fff;
 
         --background-color-dark: #121212;
-        --text-color-dark: #fff;       
+        --text-color-dark: #fff;
       }
       /* Réglages de base pour la taille de la police */
       body {
         font-size: 16px;
         background: var(--background-color);
         color: var(--text-color);
+        transition: background-color 0.3s linear, color 0.3s linear;
         animation: fadeIn 1s ease-out forwards;
       }
       /* ------- switch theme */
@@ -189,7 +190,7 @@
         color: var(--text-color);
         background-color: transparent;
         border: 1px;
-        border-color: var(--text-color);;
+        border-color: var(--text-color);
         border-radius: 10px;
         border-style: solid;
       }
@@ -201,7 +202,7 @@
 
       /* Styles pour les liens dans la section centrée */
       .center a {
-        color: var(--text-color);;
+        color: var(--text-color);
       }
 
       /* Styles pour les groupes de compétences */
@@ -236,8 +237,8 @@
   </head>
   <!-- html page component contents  -->
   <body class="light-mode">
-     <!-- toggle switch for switch theme  -->
-     <div class="theme-switch-wrapper">
+    <!-- toggle switch for switch theme  -->
+    <div class="theme-switch-wrapper">
       <label class="theme-switch" for="checkbox">
         <input type="checkbox" id="checkbox" />
         <div class="slider round"></div>
@@ -266,7 +267,13 @@
       <h2 style="color: #94b9ff; font-weight: bold">Projects</h2>
       <div class="project-container">
         <div class="project">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
             CODELEMENT (2024)
           </p>
           <p>
@@ -276,7 +283,13 @@
           </p>
         </div>
         <div class="project">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
             FISHEYE (2024)
           </p>
           <p>
@@ -286,7 +299,13 @@
           </p>
         </div>
         <div class="project">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
             KASA (2023)
           </p>
           <p>
@@ -306,7 +325,15 @@
 
       <div class="skill-group">
         <div class="skill">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">Design</p>
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
+            Design
+          </p>
           <div class="skill-item">
             <p>#CANVA</p>
           </div>
@@ -316,7 +343,13 @@
         </div>
 
         <div class="skill">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
             Front/Back
           </p>
           <div class="skill-item">
@@ -331,7 +364,15 @@
         </div>
 
         <div class="skill">
-          <p style="background-color: #cdffd8; color: #333333; display: inline-block">Other</p>
+          <p
+            style="
+              background-color: #cdffd8;
+              color: #333333;
+              display: inline-block;
+            "
+          >
+            Other
+          </p>
           <div class="skill-item">
             <p>#GOOGLETOOLS</p>
           </div>
