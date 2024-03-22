@@ -35,8 +35,6 @@
         font-size: 16px;
         background: var(--background-color);
         color: var(--text-color);
-        --background-color: var(--background-color-light);
-        --text-color: var(--text-color-light);
         transition: background-color 0.3s linear, color 0.3s linear;
         animation: fadeIn 1s ease-out forwards;
       }
@@ -401,7 +399,7 @@
 
         if (currentTheme) {
           document.body.className = currentTheme;
-          toggleSwitch.checked = currentTheme === "dark-mode";
+          toggleSwitch.checked = currentTheme === "light-mode";
         }
 
         toggleSwitch.addEventListener("change", switchTheme, false);
