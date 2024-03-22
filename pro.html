@@ -49,7 +49,7 @@
         right: 15px;
         display: flex;
         align-items: center;
-      } 
+      }
 
       .theme-switch {
         display: inline-block;
@@ -393,14 +393,18 @@
         const toggleSwitch = document.querySelector(
           '.theme-switch input[type="checkbox"]'
         );
-        const currentTheme = localStorage.getItem("theme")
-          ? localStorage.getItem("theme")
-          : null;
+        let currentTheme = localStorage.getItem("theme");
 
-        if (currentTheme) {
-          document.body.className = currentTheme;
-          toggleSwitch.checked = currentTheme === "light-mode";
+        // Vérifier si le thème est stocké dans le stockage local
+        if (!currentTheme) {
+          // Si le thème n'est pas stocké, définissez le mode clair par défaut
+          currentTheme = "light-mode";
+          localStorage.setItem("theme", currentTheme);
         }
+
+        // Appliquer le thème actuel au body
+        document.body.className = currentTheme;
+        toggleSwitch.checked = currentTheme === "dark-mode";
 
         toggleSwitch.addEventListener("change", switchTheme, false);
 
