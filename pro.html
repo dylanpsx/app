@@ -11,19 +11,92 @@
     <link rel="manifest" href="manifest.json" />
     <!-- css style for this page component  -->
     <style>
-      .component {
-        background-color: #ffffff;
-        color: #333333;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        font-family: Arial, sans-serif;
-        margin-bottom: 20px; /* Ajout de marge en bas pour séparer les composants */
+      /* ------- animation of components on page load */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
+      /* ------- routing for the switch theme */
+      :root {
+        --text-color-light: #333333;
+        --background-color-light: #fff;
 
+        --background-color-dark: #121212;
+        --text-color-dark: #fff;       
+      }
       /* Réglages de base pour la taille de la police */
       body {
         font-size: 16px;
+        background: var(--background-color);
+        color: var(--text-color);
+        animation: fadeIn 1s ease-out forwards;
+      }
+      /* ------- switch theme */
+      body.dark-mode {
+        background: var(--background-color-dark);
+        color: var(--text-color-dark);
+      }
+      .theme-switch-wrapper {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .theme-switch {
+        display: inline-block;
+        height: 34px;
+        position: relative;
+        width: 60px;
+      }
+
+      .theme-switch input {
+        display: none;
+      }
+
+      .slider {
+        background-color: #ccc;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: 0.4s;
+        width: 26px;
+      }
+
+      input:checked + .slider {
+        background-color: #66bb6a;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
       }
 
       /* Réglages de la taille de police pour les petits écrans */
@@ -40,6 +113,14 @@
         }
       }
 
+      .component {
+        background-color: var(--background-color);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px; /* Ajout de marge en bas pour séparer les composants */
+      }
       /* Réduction de la marge supérieure des paragraphes */
       p {
         margin-top: -14px;
@@ -65,7 +146,7 @@
 
       .links a {
         display: inline-block;
-        color: #000000;
+        color: #333333;
         text-decoration: underline;
         margin-bottom: 10px;
         background-color: #cdffd8;
@@ -105,10 +186,12 @@
         display: inline-block;
         padding: 10px 20px;
         text-decoration: none;
-        color: #ffffff;
+        color: var(--text-color);
         background-color: transparent;
-        border: 1px solid #333333;
+        border: 1px;
+        border-color: var(--text-color);;
         border-radius: 10px;
+        border-style: solid;
       }
 
       /* Styles pour les boutons centrés */
@@ -118,7 +201,7 @@
 
       /* Styles pour les liens dans la section centrée */
       .center a {
-        color: #333333;
+        color: var(--text-color);;
       }
 
       /* Styles pour les groupes de compétences */
@@ -141,7 +224,9 @@
 
       /* Styles pour les éléments de compétences */
       .skill-item {
-        border: 1px solid #000000;
+        border: 1px;
+        border-style: solid;
+        border-color: var(--text-color);
         border-radius: 10px;
         margin-bottom: 5px;
         padding: 5px 10px;
@@ -150,31 +235,48 @@
     </style>
   </head>
   <!-- html page component contents  -->
-  <body>
+  <body class="light-mode">
+     <!-- toggle switch for switch theme  -->
+     <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round"></div>
+      </label>
+    </div>
     <div class="component">
       <h2>BTS - Technicien Programmation Information (2023)</h2>
       <p>short mission & full-remote only</p>
       <p>✅ available immediately</p>
       <p><a href="mailto:dylanpsx@gmail.com">dylanpsx@gmail.com</a></p>
       <div class="links">
-        <a href="https://dylanpsx.github.io/app/library">Ouvrir mon Portfolio</a>
-        <a href="https://github.com/dylanpsx" target="_blank">Voir mon travail sur Github</a>
-        <a href="https://www.canva.com/design/DAFMIdLaoY4/tdvG9ewigxx2QXpdoQ8W-Q/view?utm_content=DAFMIdLaoY4&utm_campaign=designshare&utm_medium=link&utm_source=editor" target="_blank">Consultez mon CV</a>
+        <a href="https://dylanpsx.github.io/app/library"
+          >Ouvrir mon Portfolio</a
+        >
+        <a href="https://github.com/dylanpsx" target="_blank"
+          >Voir mon travail sur Github</a
+        >
+        <a
+          href="https://www.canva.com/design/DAFMIdLaoY4/tdvG9ewigxx2QXpdoQ8W-Q/view?utm_content=DAFMIdLaoY4&utm_campaign=designshare&utm_medium=link&utm_source=editor"
+          target="_blank"
+          >Consultez mon CV</a
+        >
       </div>
     </div>
     <div class="component">
       <h2 style="color: #94b9ff; font-weight: bold">Projects</h2>
       <div class="project-container">
         <div class="project">
-          <p style="background-color: #cdffd8; display: inline-block">
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
             CODELEMENT (2024)
           </p>
           <p>
-            Développement d'une application web en JavaScript pour une Bibliothèques de Composants d'interface utilisateur web lors d'un projet personnel.
+            Développement d'une application web en JavaScript pour une
+            Bibliothèques de Composants d'interface utilisateur web lors d'un
+            projet personnel.
           </p>
         </div>
         <div class="project">
-          <p style="background-color: #cdffd8; display: inline-block">
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
             FISHEYE (2024)
           </p>
           <p>
@@ -184,7 +286,7 @@
           </p>
         </div>
         <div class="project">
-          <p style="background-color: #cdffd8; display: inline-block">
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
             KASA (2023)
           </p>
           <p>
@@ -204,7 +306,7 @@
 
       <div class="skill-group">
         <div class="skill">
-          <p style="background-color: #cdffd8; display: inline-block">Design</p>
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">Design</p>
           <div class="skill-item">
             <p>#CANVA</p>
           </div>
@@ -214,7 +316,7 @@
         </div>
 
         <div class="skill">
-          <p style="background-color: #cdffd8; display: inline-block">
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">
             Front/Back
           </p>
           <div class="skill-item">
@@ -229,7 +331,7 @@
         </div>
 
         <div class="skill">
-          <p style="background-color: #cdffd8; display: inline-block">Other</p>
+          <p style="background-color: #cdffd8; color: #333333; display: inline-block">Other</p>
           <div class="skill-item">
             <p>#GOOGLETOOLS</p>
           </div>
@@ -245,6 +347,32 @@
     <!-- javascript script for this page component  -->
     <script>
       // type="module"
+      // ------- switch theme
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleSwitch = document.querySelector(
+          '.theme-switch input[type="checkbox"]'
+        );
+        const currentTheme = localStorage.getItem("theme")
+          ? localStorage.getItem("theme")
+          : null;
+
+        if (currentTheme) {
+          document.body.className = currentTheme;
+          toggleSwitch.checked = currentTheme === "dark-mode";
+        }
+
+        toggleSwitch.addEventListener("change", switchTheme, false);
+
+        function switchTheme(e) {
+          if (e.target.checked) {
+            document.body.className = "dark-mode";
+            localStorage.setItem("theme", "dark-mode");
+          } else {
+            document.body.className = "light-mode";
+            localStorage.setItem("theme", "light-mode");
+          }
+        }
+      });
     </script>
   </body>
 </html>
