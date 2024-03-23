@@ -4,9 +4,27 @@
       "mediaType": "video",
       "image": "data/Product-01/product-01.mp4",
       "url": "https://github.com/dylanpsx/kasa",
-      "category": "Page Structures",
-      "subCategory": "Footers",
+      "category": "",
+      "subCategory": "",
       "demo": "https://dylanpsx.github.io/kasa"
+    },
+    {
+      "title": "",
+      "mediaType": "video",
+      "image": "data/Product-02/product-02.mp4",
+      "url": "https://github.com/dylanpsx/agence-la-panthere",
+      "category": "",
+      "subCategory": "",
+      "demo": "https://dylanpsx.github.io/agence-la-panthere"
+    },
+    {
+      "title": "",
+      "mediaType": "video",
+      "image": "data/Product-03/product-03.mp4",
+      "url": "https://github.com/dylanpsx/booki",
+      "category": "",
+      "subCategory": "",
+      "demo": "https://dylanpsx.github.io/booki"
     }
   ]
   
