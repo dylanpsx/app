@@ -27,8 +27,8 @@
         --text-color-light: #333333;
         --background-color-light: #fff;
 
-        --background-color-dark: #121212;
-        --text-color-dark: #fff;
+        --background-color-dark: #04122b;
+        --text-color-dark: #f3f3f3;
       }
       /* Réglages de base pour la taille de la police */
       body {
@@ -147,11 +147,14 @@
 
       .links a {
         display: inline-block;
-        color: #333333;
-        text-decoration: underline;
+        color: var(--text-color);
+        text-decoration: none;
         margin-bottom: 10px;
-        background-color: #cdffd8;
-        padding: 5px; /* Ajout de padding pour espacer légèrement les liens */
+        border-style: solid;
+        border-color: var(--text-color);
+        border-radius: 10px;
+        border-style: solid;
+        padding: 10px 20px; /* Ajout de padding pour espacer légèrement les liens */
       }
 
       /* Styles pour les éléments surlignés */
@@ -179,7 +182,7 @@
 
       /* Style pour le premier paragraphe des projets */
       .project p:first-child {
-        background-color: #cdffd8;
+        display: inline-block;
       }
 
       /* Styles pour les boutons */
@@ -221,6 +224,7 @@
       /* Styles pour les paragraphes des compétences */
       .skill p {
         margin: 5px 0;
+        display: inline-block;
       }
 
       /* Styles pour les éléments de compétences */
@@ -267,13 +271,7 @@
       <h2 style="color: #94b9ff; font-weight: bold">Projects</h2>
       <div class="project-container">
         <div class="project">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             CODELEMENT (2024)
           </p>
           <p>
@@ -283,13 +281,7 @@
           </p>
         </div>
         <div class="project">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             FISHEYE (2024)
           </p>
           <p>
@@ -299,13 +291,7 @@
           </p>
         </div>
         <div class="project">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             KASA (2023)
           </p>
           <p>
@@ -325,13 +311,7 @@
 
       <div class="skill-group">
         <div class="skill">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             Design
           </p>
           <div class="skill-item">
@@ -343,13 +323,7 @@
         </div>
 
         <div class="skill">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             Front/Back
           </p>
           <div class="skill-item">
@@ -364,13 +338,7 @@
         </div>
 
         <div class="skill">
-          <p
-            style="
-              background-color: #cdffd8;
-              color: #333333;
-              display: inline-block;
-            "
-          >
+          <p>
             Other
           </p>
           <div class="skill-item">
@@ -397,8 +365,8 @@
 
         // Vérifier si le thème est stocké dans le stockage local
         if (!currentTheme) {
-          // Si le thème n'est pas stocké, définissez le mode clair par défaut
-          currentTheme = "light-mode";
+          // Si le thème n'est pas stocké, définissez le mode par défaut
+          currentTheme = "dark-mode";
           localStorage.setItem("theme", currentTheme);
         }
 
