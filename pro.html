@@ -26,15 +26,18 @@
       :root {
         --text-color-light: #333333;
         --background-color-light: #fff;
+        --box-shadow-color-light: rgba(0, 0, 0, 0.1); /* Couleur de l'ombre pour le thème clair */
 
         --background-color-dark: #04122b;
         --text-color-dark: #f3f3f3;
+        --box-shadow-color-dark: rgba(255, 255, 255, 0.1); /* Couleur de l'ombre pour le thème sombre */
       }
       /* Réglages de base pour la taille de la police */
       body {
         font-size: 16px;
         background: var(--background-color);
         color: var(--text-color);
+        --box-shadow-color: var(--box-shadow-color-light);
         transition: background-color 0.3s linear, color 0.3s linear;
         animation: fadeIn 1s ease-out forwards;
       }
@@ -42,6 +45,7 @@
       body.dark-mode {
         background: var(--background-color-dark);
         color: var(--text-color-dark);
+        --box-shadow-color: var(--box-shadow-color-dark);
       }
       .theme-switch-wrapper {
         position: fixed;
@@ -118,7 +122,7 @@
         background-color: var(--background-color);
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px var(--box-shadow-color); /* Utilisation de la variable de couleur de l'ombre */
         font-family: Arial, sans-serif;
         margin-bottom: 20px; /* Ajout de marge en bas pour séparer les composants */
       }
