@@ -5,133 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Application</title>
   <link rel="icon" href="fav.ico" type="image/x-icon" />
-  <link rel="manifest" href="/app/manifest.json" />
   <style>
-    /* Styles de base */
+    /* Styles de base pour le plein écran */
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       background-color: #04122b;
-      color: white;
-      font-family: 'Arial', sans-serif;
     }
 
-    /* Animation d'apparition */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Logo */
-    img {
-      max-width: 300px;
-      height: auto;
-      margin-bottom: 20px;
-      animation: fadeIn 3s ease-out forwards;
-    }
-
-    /* Loader */
-    .loader {
-      border: 6px solid rgba(255, 255, 255, 0.3);
-      border-left-color: #94B9FF;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 0.3s linear infinite;
-    }
-
-    /* Animation de rotation du loader */
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Styles pour les boutons */
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .access-button {
-      padding: 10px 20px;
-      margin: 0 10px; /* Espacement entre les boutons */
-      font-size: 1rem;
-      color: #94B9FF;
-      background-color: transparent;
-      border: 1px solid;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      transition: color 0.3s ease, background-color 0.3s ease;
-    }
-
-    /* Pseudo-élément pour le soulignement */
-    .access-button::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 5px;
-      left: 50%;
-      background-color: #94B9FF;
-      transition: width 0.3s ease, background-color 0.3s ease, left 0.3s ease;
-    }
-
-    /* Effet de survol */
-    .access-button:hover::after {
+    /* Styles pour l'iframe */
+    iframe {
       width: 100%;
-      left: 0;
-      background-color: #CDFFD8;
-    }
-
-    .access-button:hover {
-      color: #CDFFD8;
-    }
-
-    /* Média queries pour les appareils mobiles */
-    @media (max-width: 600px) {
-      .button-container {
-        flex-direction: column; /* Empile les boutons verticalement */
-        align-items: center; /* Centre les boutons horizontalement */
-      }
-
-      .access-button {
-        margin: 10px 0; /* Espacement entre les boutons */
-      }
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="DylanPSX Logo" />
-  <div class="loader"></div>
-  <div class="button-container">
-    <button class="access-button" onclick="window.location.href='https://sites.google.com/view/dylanpsx/';">
-      Website
-    </button>
-    <button class="access-button" onclick="window.location.href='pro.html';">
-      Pro page
-    </button>
-    <button class="access-button" onclick="window.location.href='library.html';">
-      Portfolio
-    </button>
-  </div>
+  <iframe id="contentFrame" src=""></iframe>
   <script>
-    setTimeout(function () {
-      document.querySelector(".loader").style.display = "none";
-      document.querySelector(".button-container").style.display = "flex"; // Affiche le conteneur des boutons
-    }, 1000);
+    // Charger l'URL directement dans l'iframe au démarrage
+    window.onload = function() {
+      document.getElementById('contentFrame').src = 'https://xsp.framer.website/';
+    };
   </script>
 </body>
 </html>
