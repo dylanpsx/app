@@ -22,6 +22,7 @@
           transform: translateY(0);
         }
       }
+
       /* ------- routing for the switch theme */
       :root {
         --text-color-light: #000;
@@ -33,6 +34,7 @@
         --header-background-color-dark: #1c1c1c;
         --section-background-color-dark: #2c2c2c;
       }
+
       /* ------- general body styles */
       html,
       body {
@@ -48,6 +50,7 @@
         transition: background-color 0.3s linear, color 0.3s linear;
         animation: fadeIn 1s ease-out forwards;
       }
+
       /* ------- switch theme */
       body.dark-mode {
         background: var(--background-color-dark);
@@ -57,6 +60,7 @@
         --header-background-color: var(--header-background-color-dark);
         --section-background-color: var(--section-background-color-dark);
       }
+
       .theme-switch-wrapper {
         position: fixed;
         top: 15px;
@@ -113,33 +117,29 @@
       .slider.round:before {
         border-radius: 50%;
       }
+
       /* ------- product library */
       #library-container {
         display: grid;
-        grid-template-columns: repeat(
-          auto-fill,
-          minmax(300px, 1fr)
-        ); /* increase minimum column size for larger images */
-        gap: 30px; /* increase spacing for better readability */
-        padding: 50px 10px; /* Adds padding to eliminate space against the edges of the page */
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 150px 10px;
         max-width: 100%;
         box-sizing: border-box;
       }
 
       /* card */
       .library-template {
-        border-radius: 15px; /* rounded edges */
+        border-radius: 15px;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-        background-color: #1c1c1e; /* darker card background for contrast */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* deeper shadow for a 3D effect */
+        background-color: #1c1c1e;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
       }
 
       .library-template:hover {
-        transform: scale(
-          1.03
-        ); /* slight increase in scale for a dynamic hover effect */
+        transform: scale(1.03);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
       }
 
@@ -147,35 +147,32 @@
       .library-template img,
       .library-template video {
         width: 100%;
-        height: 200px; /* fixed height to make media larger and more uniform */
-        object-fit: cover; /* ensures the media covers the area without losing its proportions */
+        height: 200px;
+        object-fit: cover;
         transition: transform 0.3s ease;
       }
 
       .library-template:hover img,
       .library-template:hover video {
-        transform: scale(1.1); /* focus on the media */
+        transform: scale(1.1);
       }
 
-      /* ensures that the video controls do not extend beyond the video element */
       .library-template video {
-        display: block; /* eliminate any space below the video */
-        width: 100%; /* ensures that the video does not extend beyond its container */
+        display: block;
+        width: 100%;
       }
 
       /* download link */
       .library-template a {
         display: block;
         width: 100%;
-        padding: 15px 0; /* adjust the vertical padding to your preference */
-        background-color: transparent; /* transparent background for the link */
-        color: #94b9ff; /* color for link text */
+        padding: 15px 0;
+        background-color: transparent;
+        color: #94b9ff;
         text-align: center;
-        text-decoration: none; /* remove default underline */
+        text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease, background-color 0.3s ease;
-
-        /* underline animation */
         position: relative;
       }
 
@@ -183,27 +180,28 @@
         content: "";
         position: absolute;
         width: 0;
-        height: 2px; /* underline thickness */
-        bottom: 5px; /* adjusts to desired text spacing at underline */
+        height: 2px;
+        bottom: 5px;
         left: 50%;
-        background-color: #94b9ff; /* initial underline color */
+        background-color: #94b9ff;
         transition: width 0.3s ease, background-color 0.3s ease, left 0.3s ease;
       }
 
       .library-template a:hover::after {
-        width: 100%; /* underline extends to full width on hover */
-        left: 0; /* correct underline alignment */
-        background-color: #cdffd8; /* pink color on hover */
+        width: 100%;
+        left: 0;
+        background-color: #cdffd8;
       }
 
       .library-template a:hover {
-        color: #cdffd8; /* change text color on hover */
+        color: #cdffd8;
       }
 
       /* ------- product library */
       #filter-select {
         display: none;
       }
+
       .filter-select {
         display: inline-block;
         padding: 10px 20px;
@@ -213,10 +211,10 @@
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease;
-        border: 1.5px solid #1c1c1e; /* prepare the button for a border effect */
+        border: 1.5px solid #1c1c1e;
         border-radius: 0.5rem;
-        cursor: pointer; /* changes the cursor to indicate clickability */
-        margin: 20px auto; /* center the select in the div */
+        cursor: pointer;
+        margin: 20px auto;
         position: relative;
       }
 
@@ -225,7 +223,7 @@
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: -2px; /* adjust if necessary to position the underline */
+        bottom: -2px;
         left: 50%;
         background-color: #94b9ff;
         transition: width 0.3s ease, left 0.3s ease, background-color 0.3s ease;
@@ -234,11 +232,55 @@
       .filter-select:hover::after {
         width: 100%;
         left: 0;
-        background-color: #cdffd8; /* color change on hover */
+        background-color: #cdffd8;
       }
 
       .filter-select:hover {
         color: #cdffd8;
+      }
+
+      /* New button style */
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .access-button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 1rem;
+      color: #333;
+      background-color: #fff;
+      border: 1px solid #333;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .access-button:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+      /* Mode sombre */
+      body.dark-mode .access-button {
+        color: #333;
+        border-color: var(--text-color-dark);
+      }
+
+      body.dark-mode .access-button::after {
+        background-color: var(--text-color-dark);
+      }
+
+      body.dark-mode .access-button:hover::after {
+        background-color: #333; /* Bleu clair pour l'effet de survol en mode sombre */
+      }
+
+      body.dark-mode .access-button:hover {
+        color: #fff;
       }
     </style>
   </head>
@@ -303,6 +345,14 @@
     </div>
     <!-- product library  -->
     <div id="library-container"></div>
+    <div class="button-container">
+      <button
+        class="access-button"
+        onclick="window.location.href='index.html';"
+      >
+        Back to Home
+      </button>
+    </div>
     <!-- cdn script for switch theme  -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <!-- javascript script for this page component  -->
